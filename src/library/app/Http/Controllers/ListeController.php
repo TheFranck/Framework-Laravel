@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Book as Book;
+use App\Author as Author;
 
 class ListeController extends Controller
 {
@@ -11,13 +12,19 @@ class ListeController extends Controller
     {
       $books = Book::all();
       $value = array();
+      $i=0;
       foreach ($books as $book) {
         array_push($value, [
           "title" => $book->title,
-          "author" => $book->author,
+          "author" => array(),
           "id" => $book->id,
         ]
       );
+      foreach ($book->authors as $author)
+      {
+        array_push($value[$i]["author"], $author->name);
+      };
+      $i ++;
     };
 
       return view('liste', ["books" => $value]);
@@ -25,11 +32,18 @@ class ListeController extends Controller
 
     public function addBook()
     {
-      return view('addBook');
+      $authors= Author::all();
+      $authorsList = array();
+      foreach ($authors as $author)
+      {
+        $authorsList[$author->id] = $author->name;
+      }
+      return view('addBook', ['authors' => $authorsList ]);
     }
 
     public function insertBook(Request $request)
     {
+
       $book = new Book;
       $book->title = $request->title;
       $book->author = $request->author;

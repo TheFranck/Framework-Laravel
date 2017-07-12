@@ -15,7 +15,8 @@
                   {{ Form::label('title', 'le Titre du livre') }}
                   {{ Form::text('title') }}
                   {{ Form::label('author', 'le nom d\'un auteur') }}
-                  {{ Form::text('author') }}
+                  {{ Form::select('author', $authors)}}
+
                   {{ Form::submit('Ajouter le livre')}}
 
                   {{ Form::close() }}

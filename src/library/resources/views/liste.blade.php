@@ -13,7 +13,9 @@
 
                       <tr>
                         <td>{{ $book['title'] }}</td>
-                        <td>{{ $book['author'] }} </td>
+                        <td>  @foreach ($book['author'] as $author)
+                            {{ $author }}
+                          @endforeach </td>
                         <td>{{ Form::open(['url' => '/delete/book']) }} <!-- Trouver sur laravel Collective-->
                             {{ Form::hidden('id', $book['id']) }}
                             {{ Form::submit('Supprimer')}}

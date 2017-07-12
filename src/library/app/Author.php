@@ -4,13 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Book extends Model
+class Author extends Model
 {
   public $timestamps = false;
 
-  public function authors()
+  public function books()
   {
-    return $this->belongsToMany('App\Author');
+    return $this->belongsToMany('App\Book');
   }
-
 }
