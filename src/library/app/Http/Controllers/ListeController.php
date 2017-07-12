@@ -46,8 +46,10 @@ class ListeController extends Controller
 
       $book = new Book;
       $book->title = $request->title;
-      $book->author = $request->author;
+      //$book->author = $request->author;
+      //$book->save();
       $book->save();
+      $book->authors()->attach($request->author);
       return redirect ('/liste');
     }
 
