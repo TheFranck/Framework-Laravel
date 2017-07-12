@@ -36,4 +36,26 @@ class ListeController extends Controller
       $book->save();
       return redirect ('/liste');
     }
+
+    public function deleteBook(Request $request)
+    {
+      $book = Book::find($request->id);
+      $book->delete();
+      return redirect ('/liste');
+    }
+
+    public function updateBook(Request $request)
+    {
+      $book = Book::find($request->id);
+      return view('updateBook', ['title' => $book->title, 'author' => $book->author, 'id' =>$book->id]);
+    }
+
+    public function updateBookAction(Request $request)
+    {
+      $book = Book::find($request->id);
+      $book->title = $request->title;
+      $book->author = $request->author;
+      $book->save();
+      return redirect ('/liste');
+    }
 }

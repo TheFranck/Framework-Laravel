@@ -15,6 +15,9 @@ Route::get('/liste','ListeController@index');
 Route::get('/addBook','ListeController@addBook');
 
 Route::post('/insert/book','ListeController@insertBook');
+Route::post('/delete/book','ListeController@deleteBook');
+Route::post('/update/book','ListeController@updateBook');
+Route::post('/update/book/action','ListeController@updateBookAction');
 
 Auth::routes();
 

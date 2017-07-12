@@ -9,7 +9,11 @@
                       <p>{{ $book['title'] }} : {{ $book['author'] }} </p>
                       {{ Form::open(['url' => '/delete/book']) }} <!-- Trouver sur laravel Collective-->
                       {{ Form::hidden('id', $book['id']) }}
-                      {{ Form::submit('delete')}}
+                      {{ Form::submit('Supprimer')}}
+                      {{ Form::close() }}
+                      {{ Form::open(['url' => '/update/book']) }} <!-- Trouver sur laravel Collective-->
+                      {{ Form::hidden('id', $book['id']) }}
+                      {{ Form::submit('Mettre à jour ')}}
                       {{ Form::close() }}
                     @endforeach
               </section>
