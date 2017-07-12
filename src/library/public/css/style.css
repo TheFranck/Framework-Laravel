@@ -4,6 +4,7 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 header {
@@ -164,8 +165,47 @@ footer p{
   justify-content: center;
   align-items: center;
   text-align: center;
+  background-color: #83ABBF;
+  width: 90%;
+}
+
+#liste h2 {
+  margin-top: 0;
+
 }
 
 #liste p {
   padding: 15px 0;
+}
+
+table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+
+tbody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+
+th {
+  padding: 10px 5px;
+}
+
+tr {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  padding: 20px;
+}
+
+td {
+  padding: 10px 5px;
 }
