@@ -10,13 +10,13 @@
                   <h2>Votre bibliothèque virtuelle</h2>
                   <p>Rajouter un livre via un formulaire</p>
 
-                  {{ Form::open(['url' => '/insert/book']) }} <!-- Trouver sur laravel Collective-->
+                  {{ Form::open(['url' => '/insert/book','files'=>true]) }} <!-- Trouver sur laravel Collective-->
 
                   {{ Form::label('title', 'le Titre du livre') }}
                   {{ Form::text('title') }}
                   {{ Form::label('author', 'le nom d\'un auteur') }}
-                  {{ Form::select('author', $authors)}}
-
+                  {{ Form::select('author[]', $authors, null, array('multiple' => 'multiple'))}}
+                  {{ Form::file('cover')}}
                   {{ Form::submit('Ajouter le livre')}}
 
                   {{ Form::close() }}

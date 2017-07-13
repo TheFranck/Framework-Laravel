@@ -15,7 +15,7 @@
                   {{ Form::label('title', 'le Titre du livre') }}
                   {{ Form::text('title', $title) }}
                   {{ Form::label('author', 'le nom d\'un auteur') }}
-                  {{ Form::text('author', $author) }}
+                  {{ Form::select('author[]', $authors, null, array('multiple' => 'multiple'))}}
                   {{ Form::hidden('id', $id) }}
                   {{ Form::submit('Mettre à jour')}}
 

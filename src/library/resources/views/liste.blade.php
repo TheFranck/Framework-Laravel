@@ -9,13 +9,20 @@
                       <th>nom du livre</th>
                       <th>Auteur du Livre</th>
                     </tr>
+
                     @foreach ($books as $book)
 
+
                       <tr>
+                        <td>
+                          <img src="{{ URL::asset($book['cover'])}}" alt="">
+                        </td>
                         <td>{{ $book['title'] }}</td>
-                        <td>  @foreach ($book['author'] as $author)
+                        <td>
+                          @foreach ($book['author'] as $author)
                             {{ $author }}
-                          @endforeach </td>
+                          @endforeach
+                        </td>
                         <td>{{ Form::open(['url' => '/delete/book']) }} <!-- Trouver sur laravel Collective-->
                             {{ Form::hidden('id', $book['id']) }}
                             {{ Form::submit('Supprimer')}}

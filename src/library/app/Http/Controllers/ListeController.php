@@ -18,6 +18,7 @@ class ListeController extends Controller
           "title" => $book->title,
           "author" => array(),
           "id" => $book->id,
+          "cover" =>$book->cover,
         ]
       );
       foreach ($book->authors as $author)
@@ -43,19 +44,23 @@ class ListeController extends Controller
 
     public function insertBook(Request $request)
     {
-
+      $store = $request->cover->store('public/img');
+      $store = str_replace("public", "storage", $store); // On remplace public par storage
       $book = new Book;
       $book->title = $request->title;
       //$book->author = $request->author;
       //$book->save();
+      $book->cover = $store;
       $book->save();
       $book->authors()->attach($request->author);
       return redirect ('/liste');
     }
 
+
     public function deleteBook(Request $request)
     {
       $book = Book::find($request->id);
+      $book->authors()->detach();
       $book->delete();
       return redirect ('/liste');
     }
@@ -63,15 +68,23 @@ class ListeController extends Controller
     public function updateBook(Request $request)
     {
       $book = Book::find($request->id);
-      return view('updateBook', ['title' => $book->title, 'author' => $book->author, 'id' =>$book->id]);
+      $authors= Author::all();
+      $authorsList = array();
+      foreach ($authors as $author)
+        {
+          $authorsList[$author->id] = $author->name;
+        }
+      return view('updateBook', ['title' => $book->title, 'authors' => $authorsList, 'id' =>$book->id]);
     }
 
     public function updateBookAction(Request $request)
     {
       $book = Book::find($request->id);
       $book->title = $request->title;
-      $book->author = $request->author;
+      // $book->author = $request->author;
       $book->save();
+      $book->authors()->detach();
+      $book->authors()->attach($request->author);
       return redirect ('/liste');
     }
 }
