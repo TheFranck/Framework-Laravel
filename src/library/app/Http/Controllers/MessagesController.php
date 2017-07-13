@@ -18,7 +18,7 @@ class MessagesController extends Controller
 
   public function writeMessage()
   {
-    $messages= User::all();
+    $users= User::all();
     $userList = array();
     foreach ($users as $user) {
       $userList[$user->id] = $user->name;
